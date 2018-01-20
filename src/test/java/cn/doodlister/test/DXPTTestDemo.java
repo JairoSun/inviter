@@ -2,7 +2,7 @@ package cn.doodlister.test;
 
 
 import cn.doodlister.api.yzm.sm.MyControl;
-import cn.doodlister.api.yzm.sm.UserInfo;
+import cn.doodlister.api.yzm.UserInfo;
 import cn.doodlister.api.yzm.sm.UserService;
 
 public class DXPTTestDemo {

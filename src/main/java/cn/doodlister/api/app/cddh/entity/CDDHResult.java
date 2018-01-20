@@ -1,6 +1,8 @@
 package cn.doodlister.api.app.cddh.entity;
 
-public class CDDHResult {
+import cn.doodlister.api.app.BaseResult;
+
+public class CDDHResult  extends BaseResult{
     /**
      * 现在已知的返回格式有
      * 1.msg {"code":0,"msg":"请求成功","data":null}

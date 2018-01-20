@@ -1,4 +1,6 @@
-package cn.doodlister.api.yzm.sm;
+package cn.doodlister.api.yzm;
+
+import cn.doodlister.api.yzm.sm.MyControl;
 
 public class UserInfo {
 	private String uid;
@@ -47,6 +49,11 @@ public class UserInfo {
 		} else {
 			return true;
 		}
+	}
+
+	public UserInfo(String uid, String pwd) {
+		this.uid = uid;
+		this.pwd = pwd;
 	}
 
 	@Override

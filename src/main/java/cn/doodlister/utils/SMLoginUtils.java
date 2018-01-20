@@ -1,6 +1,6 @@
 package cn.doodlister.utils;
 
-import cn.doodlister.CDDHRun;
+import cn.doodlister.api.yzm.UserInfo;
 import cn.doodlister.api.yzm.sm.*;
 import org.apache.log4j.Logger;
 
@@ -16,7 +16,7 @@ public class SMLoginUtils {
         UserInfo userInfo = new UserInfo();
         userInfo.setUid(username);
         userInfo.setPwd(password);
-        String result = UserService.login(userInfo);
+        String result =   UserService.login(userInfo);
         if (MyControl.isNull(result)) {
             logger.error("收码平台登陆失败   " +result);
         }

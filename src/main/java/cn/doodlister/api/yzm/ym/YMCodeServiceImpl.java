@@ -1,11 +1,10 @@
 package cn.doodlister.api.yzm.ym;
 
 import cn.doodlister.api.yzm.CodeService;
-import cn.doodlister.api.yzm.sm.UserInfo;
+import cn.doodlister.api.yzm.UserInfo;
 import cn.doodlister.utils.HttpClientUtil;
-import cn.doodlister.utils.SMLoginUtils;
-import com.alibaba.fastjson.JSON;
 import org.apache.log4j.Logger;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +27,6 @@ import java.util.Map;
  */
 public class YMCodeServiceImpl implements CodeService {
     private static Logger logger = Logger.getLogger(YMCodeServiceImpl.class);
-    private static final String token = "003097882ef89ed301d479648f294248bdc28c50";
     @Override
     public UserInfo login(UserInfo userInfo) {
         String url = "http://api.51ym.me/UserInterface.aspx?action=login&username="+userInfo.getUid()+"&password="+userInfo.getPwd();
@@ -63,8 +61,8 @@ public class YMCodeServiceImpl implements CodeService {
         logger.debug(response);
         String[] tokens = response.split("\\|");
         if("success".equals(tokens[0])){
-
-            return response;
+            String info = "用户名:"+tokens[1]+" 账户余额:"+tokens[4]+" 可获取号码最大数量:" +tokens[7];
+            return info;
         }else{
             logger.error("登陆失败");
             //TODO 失败异常
@@ -92,7 +90,8 @@ public class YMCodeServiceImpl implements CodeService {
 
             return tokens[1];
         }else{
-            logger.error("登陆失败");
+            logger.error("未获取到手机号码");
+            logger.error(response);
             //TODO 失败异常
             return null;
         }
@@ -125,8 +124,19 @@ public class YMCodeServiceImpl implements CodeService {
 
 
     @Override
-    public String addIgnore(String mobileNum, String uid, String token, String pid) {
-        return null;
+    public Boolean addIgnore(String mobileNum, String itemId,UserInfo userInfo) {
+
+        String url = "http://api.51ym.me/UserInterface.aspx?action=addignore&mobile="+mobileNum+"&itemid="+itemId+"&token="+userInfo.getToken();
+        String response = HttpClientUtil.doGet(url);
+        logger.debug(response);
+        if("success".equals(response)){
+
+            return true;
+        }else{
+            logger.error(response);
+            //TODO 失败异常
+            return true;
+        }
     }
 
     @Override
@@ -138,29 +148,24 @@ public class YMCodeServiceImpl implements CodeService {
          mobile=电话号码
          itemid=项目编号
          *release=1，获取短信并释放号码，若要继续使用该号码，请勿带入该参数。
-
          成功返回值： success|短信内容
          */
 
         String url = "http://api.51ym.me/UserInterface.aspx?action=getsms&mobile="+phoneNum+"&itemid="+itemId+"&token="+user.getToken()+"&release=1";
-      //  String response = HttpClientUtil.doGet_UTF8(url);
-      //  String url = "http://api.51ym.me/UserInterface.aspx";
         Map<String,String> map = new HashMap<String,String>();
-       // map.put("mobile"phoneNum);
-        //map.put("itemid",itemId);
         String response = HttpClientUtil.doPost(url,map);
-        logger.info(response);
+        logger.info("收码平台返回状态:"+response);
         if("3001\r\n".equals(response)){
-            return "3001";
+            logger.info("还未接收到验证码");
+            return "";
         }
         String[] tokens = response.split("\\|");
         if("success".equals(tokens[0])){
-           // releaseAll(user);
+            //加黑号码
+            addIgnore(phoneNum,itemId,user);
             return tokens[1];
-
         }else{
             logger.error("获取失败");
-
             //TODO 失败异常
             return "";
         }
@@ -172,4 +177,6 @@ public class YMCodeServiceImpl implements CodeService {
     public String getVcodeAndHoldMobilenum(String uid, String token, String mobileNum, String nextId, String author_uid) {
         return null;
     }
+
+
 }

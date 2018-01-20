@@ -1,10 +1,11 @@
 package cn.doodlister.api.yzm.sm;
 
 
+import cn.doodlister.api.yzm.CodeService;
+import cn.doodlister.api.yzm.UserInfo;
 import cn.doodlister.utils.HttpClientUtil;
-import org.junit.jupiter.api.Test;
 
-public class UserService {
+public class UserService{
 
 	public static String login(UserInfo userInfo) throws Exception {
 		if (!MyControl.isNull(userInfo.getUid()) && !MyControl.isNull(userInfo.getPwd())) {
