@@ -6,4 +6,4 @@
 
 
 ## 短信平台 
-短信平台现已经接入 (http://www.eobzz.com/ "速码(SM)") 和 (http://www.51ym.me/ "易码(YM)") 平台。 需注册对应账号 将账号密码填入runTask类中UserInfo的构造函数中。
+短信平台现已经接入 [速码(SM)](http://www.eobzz.com/ ) 和 [易码(YM)](http://www.51ym.me/) 平台。 需注册对应账号 将账号密码填入runTask类中UserInfo的构造函数中。
