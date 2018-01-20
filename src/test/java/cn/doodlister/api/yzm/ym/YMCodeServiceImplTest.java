@@ -9,8 +9,8 @@ public class YMCodeServiceImplTest {
     @Test
     public void login(){
         UserInfo userInfo = new UserInfo();
-        userInfo.setUid("doodlister");
-        userInfo.setPwd("szy19960530");
+        userInfo.setUid("");
+        userInfo.setPwd("");
         CodeService service = new YMCodeServiceImpl();
         System.out.println(service.login(userInfo));
 
@@ -19,8 +19,8 @@ public class YMCodeServiceImplTest {
     @Test
     public void getUserInfo(){
         UserInfo userInfo = new UserInfo();
-        userInfo.setUid("doodlister");
-        userInfo.setPwd("szy19960530");
+        userInfo.setUid("");
+        userInfo.setPwd("");
         CodeService service = new YMCodeServiceImpl();
         service.login(userInfo);
         System.out.println( service.getUserInfo(userInfo));
@@ -30,8 +30,8 @@ public class YMCodeServiceImplTest {
     public void getPhoneNum(){
         // 13235 冲顶大会
         UserInfo userInfo = new UserInfo();
-        userInfo.setUid("doodlister");
-        userInfo.setPwd("szy19960530");
+        userInfo.setUid("");
+        userInfo.setPwd("");
         CodeService service = new YMCodeServiceImpl();
         service.login(userInfo);
 
@@ -59,8 +59,8 @@ public class YMCodeServiceImplTest {
         String phoneNum = "15183856437";
 
         UserInfo userInfo = new UserInfo();
-        userInfo.setUid("doodlister");
-        userInfo.setPwd("szy19960530");
+        userInfo.setUid("");
+        userInfo.setPwd("");
         CodeService service = new YMCodeServiceImpl();
         service.login(userInfo);
 

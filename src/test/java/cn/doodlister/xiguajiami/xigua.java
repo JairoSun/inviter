@@ -13,7 +13,7 @@ import java.util.Map;
 public class xigua {
     @Test
     public void tttt(){
-        System.out.println(WatermelonUtils.encryptWithXor("13230282281"));
+        System.out.println(WatermelonUtils.encryptWithXor(""));
         //34323636333637343c3235
         //34323636333637343c3235
     }

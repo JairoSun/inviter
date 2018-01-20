@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class SMCodeServiceImplTest {
     SMCodeServiceImpl service = new SMCodeServiceImpl();
-    UserInfo userInfo = new UserInfo("doodlister","szy19960530");
+    UserInfo userInfo = new UserInfo("","");
     @Test
     public void login() {
         service.login(userInfo);
