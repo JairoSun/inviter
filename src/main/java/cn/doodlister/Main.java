@@ -78,14 +78,7 @@ public class Main {
         runTask(inviteCode,num,ZSTask.class,ZSTask.YM_ITEM_ID);
 
     }
-    @Test
-    public void relaseAll(){
-        YMCodeServiceImpl codeService =new YMCodeServiceImpl();
-        UserInfo userInfo = new UserInfo("doodlister","szy19960530");
-        codeService.login(userInfo);
-        Boolean aBoolean = codeService.releaseAll(userInfo);
-        System.out.println(aBoolean);
-    }
+
 
 
 
